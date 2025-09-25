@@ -212,7 +212,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 - **Author**: Vahid Nourbakhsh
-- **LinkedIn**: [Your LinkedIn Profile]
+- **LinkedIn**: [https://www.linkedin.com/in/vahidnourbakhsh/](https://www.linkedin.com/in/vahidnourbakhsh/)
 
 ---
 
