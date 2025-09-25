@@ -1,0 +1,111 @@
+# Linux/GPU Environment Setup for AIVault
+
+name: aivault
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - huggingface
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  
+  # Core scientific computing
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - plotly
+  - scipy
+  - scikit-learn
+  
+  # Deep Learning frameworks (with CUDA support)
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - tensorflow[gpu]
+  - keras
+  
+  # Computer Vision
+  - opencv
+  - pillow
+  - albumentations
+  - timm
+  
+  # Natural Language Processing
+  - transformers
+  - tokenizers
+  - datasets
+  - spacy
+  - nltk
+  - gensim
+  
+  # Generative AI and LLMs
+  - langchain
+  - openai
+  - anthropic
+  
+  # Jupyter and development
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - ipywidgets
+  - nbformat
+  
+  # Code quality and testing
+  - black
+  - isort
+  - flake8
+  - mypy
+  - pytest
+  - pytest-cov
+  - pre-commit
+  
+  # Model deployment and serving
+  - fastapi
+  - uvicorn
+  - docker-py
+  - streamlit
+  
+  # Utilities and visualization
+  - tqdm
+  - wandb
+  - tensorboard
+  - gradio
+  
+  # Audio processing
+  - librosa
+  - soundfile
+  
+  # Additional ML libraries
+  - xgboost
+  - lightgbm
+  - optuna
+  - ray-tune
+  
+  # Pip dependencies (with GPU support)
+  - pip:
+    - accelerate
+    - diffusers
+    - sentence-transformers
+    - evaluate
+    - peft
+    - bitsandbytes
+    - flash-attn
+    - vllm
+    - outlines
+    - guidance
+    - tiktoken
+    - instructor
+    - litellm
+    - modal-client
+    - psutil
+    - requests
+
+# Notes for Linux/GPU users:
+# - This environment includes CUDA support for GPU acceleration
+# - Requires NVIDIA GPU with CUDA 11.8 compatibility
+# - Includes advanced packages like bitsandbytes, flash-attn, vllm

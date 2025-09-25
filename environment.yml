@@ -1,0 +1,97 @@
+name: aivault
+channels:
+  - conda-forge
+  - pytorch
+  - huggingface
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  
+  # Core scientific computing
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - plotly
+  - scipy
+  - scikit-learn
+  
+  # Deep Learning frameworks (macOS compatible)
+  - pytorch
+  - torchvision
+  - torchaudio
+  - tensorflow
+  - keras
+  
+  # Computer Vision
+  - opencv
+  - pillow
+  - albumentations
+  - timm
+  
+  # Natural Language Processing
+  - transformers
+  - tokenizers
+  - datasets
+  - spacy
+  - nltk
+  - gensim
+  
+  # Generative AI and LLMs
+  - langchain
+  - openai
+  - anthropic
+  
+  # Jupyter and development
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - ipywidgets
+  - nbformat
+  
+  # Code quality and testing
+  - black
+  - isort
+  - flake8
+  - mypy
+  - pytest
+  - pytest-cov
+  - pre-commit
+  
+  # Model deployment and serving
+  - fastapi
+  - uvicorn
+  - docker-py
+  - streamlit
+  
+  # Utilities and visualization
+  - tqdm
+  - wandb
+  - tensorboard
+  - gradio
+  
+  # Audio processing
+  - librosa
+  - soundfile
+  
+  # Additional ML libraries
+  - xgboost
+  - lightgbm
+  - optuna
+  - ray-tune
+  
+  # Pip dependencies (macOS compatible)
+  - pip:
+    - accelerate
+    - diffusers
+    - sentence-transformers
+    - evaluate
+    - peft
+    # Note: bitsandbytes, flash-attn, vllm removed for macOS compatibility
+    - outlines
+    - guidance
+    - tiktoken
+    - instructor
+    - litellm
+    - modal-client

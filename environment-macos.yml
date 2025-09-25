@@ -1,0 +1,111 @@
+# macOS Environment Setup for AIVault
+
+name: aivault
+channels:
+  - conda-forge
+  - pytorch
+  - huggingface
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  
+  # Core scientific computing
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - plotly
+  - scipy
+  - scikit-learn
+  
+  # Deep Learning frameworks (macOS with Apple Silicon MPS support)
+  - pytorch::pytorch
+  - pytorch::torchvision
+  - pytorch::torchaudio
+  - tensorflow
+  - keras
+  
+  # Computer Vision
+  - opencv
+  - pillow
+  # Note: albumentations may have issues on some macOS setups
+  - timm
+  
+  # Natural Language Processing
+  - transformers
+  - tokenizers
+  - datasets
+  # - spacy  # Install via pip if needed
+  - nltk
+  - gensim
+  
+  # Generative AI and LLMs (macOS compatible subset)
+  # - langchain  # Install via pip if needed
+  - openai
+  # - anthropic  # Install via pip if needed
+  
+  # Jupyter and development
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - ipywidgets
+  - nbformat
+  
+  # Code quality and testing
+  - black
+  - isort
+  - flake8
+  - mypy
+  - pytest
+  - pytest-cov
+  - pre-commit
+  
+  # Model deployment and serving
+  - fastapi
+  - uvicorn
+  - streamlit
+  
+  # Utilities and visualization
+  - tqdm
+  - wandb
+  - tensorboard
+  - gradio
+  
+  # Audio processing (via pip for better compatibility)
+  # - librosa
+  # - soundfile
+  
+  # Additional ML libraries
+  - xgboost
+  - lightgbm
+  - optuna
+  
+  # Pip dependencies (macOS compatible)
+  - pip:
+    - accelerate
+    - diffusers
+    - sentence-transformers
+    - evaluate
+    - peft
+    - outlines
+    - guidance
+    - tiktoken
+    - instructor
+    - litellm
+    - modal-client
+    - psutil  # For system info
+    - requests  # For downloads
+    - librosa  # Audio processing
+    - soundfile  # Audio file handling
+    - albumentations  # Image augmentation
+    - spacy  # NLP library
+    - langchain  # LLM framework
+    - anthropic  # Anthropic API
+
+# Notes for macOS users:
+# - This environment is optimized for macOS including Apple Silicon Macs
+# - PyTorch will use MPS (Metal Performance Shaders) for GPU acceleration on Apple Silicon
+# - CUDA-specific packages (bitsandbytes, flash-attn, vllm) are excluded
+# - Some packages may need to be installed separately if needed
