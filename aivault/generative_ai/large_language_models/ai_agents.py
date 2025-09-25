@@ -268,11 +268,13 @@ class ReActAgent(BaseAgent):
     
     def _react_loop(self) -> str:
         """Execute the main ReAct loop."""
+        last_observation = None
+        
         for iteration in range(self.max_iterations):
             logger.info(f"ReAct iteration {iteration + 1}")
             
-            # Thought phase
-            thought = self._think()
+            # Thought phase - now considers previous observation
+            thought = self._think(last_observation)
             self.thoughts.append(thought)
             logger.info(f"Thought: {thought}")
             
@@ -291,10 +293,16 @@ class ReActAgent(BaseAgent):
                     # Execute action
                     self.state = AgentState.ACTING
                     observation = self._execute_action(action)
+                    last_observation = observation  # Store for next iteration
                     
                     # Observe result
                     self.state = AgentState.OBSERVING
                     logger.info(f"Observation: {observation.content}")
+                    
+                    # Evaluate if the observation provides the final answer
+                    if self._is_task_complete(observation):
+                        self.state = AgentState.DONE
+                        return self._format_final_answer(observation)
                     
                     # Continue to next iteration with the observation
                     continue
@@ -306,8 +314,8 @@ class ReActAgent(BaseAgent):
         self.state = AgentState.ERROR
         return "I couldn't complete the task within the maximum number of iterations."
     
-    def _think(self) -> str:
-        """Generate a thought based on the current context."""
+    def _think(self, last_observation: Optional[AgentObservation] = None) -> str:
+        """Generate a thought based on the current context and previous observation."""
         if not self.thoughts:
             # First thought
             if self.tools:
@@ -315,6 +323,10 @@ class ReActAgent(BaseAgent):
                 return f"I need to help with: '{self.current_task}'. I have these tools available: {available_tools}. Let me think about what I need to do."
             else:
                 return f"I need to help with: '{self.current_task}'. I don't have any tools available, so I'll provide a direct response."
+        
+        # If we have a previous observation that didn't complete the task, analyze it
+        if last_observation and last_observation.observation_type == "error":
+            return f"The previous action failed with: {last_observation.content}. Let me try a different approach for: '{self.current_task}'"
         
         # Subsequent thoughts - analyze what we've learned so far
         # Simple heuristics for thinking
@@ -396,6 +408,71 @@ class ReActAgent(BaseAgent):
     def _generate_direct_response(self) -> str:
         """Generate a direct response when no tools are used."""
         return f"I understand you want help with: '{self.current_task}'. While I don't have specific tools to handle this request, I'm here to help however I can. Could you provide more specific details about what you need?"
+    
+    def _is_task_complete(self, observation: AgentObservation) -> bool:
+        """
+        Determine if the task is complete based on the observation.
+        
+        Args:
+            observation: The observation from executing an action
+            
+        Returns:
+            bool: True if the task is complete, False otherwise
+        """
+        # Check if there's an error - if so, task is not complete
+        if observation.observation_type == "error":
+            return False
+        
+        # For calculator tasks, if we got a result, we're done
+        if observation.metadata and observation.metadata.get("tool") == "calculator":
+            return "Result:" in observation.content and "Error:" not in observation.content
+        
+        # For search tasks, if we got search results, we're done
+        elif observation.metadata and observation.metadata.get("tool") == "search":
+            return "Search result:" in observation.content or "No specific results found" in observation.content
+        
+        # For memory tasks, check if operation was successful
+        elif observation.metadata and observation.metadata.get("tool") == "memory":
+            return any(phrase in observation.content for phrase in [
+                "Stored memory:", "Retrieved memory:", "Memories:", "No memories stored"
+            ])
+        
+        # Default: if we got a meaningful response (not an error), consider it complete
+        return len(observation.content.strip()) > 0 and "Error:" not in observation.content
+    
+    def _format_final_answer(self, observation: AgentObservation) -> str:
+        """
+        Format the final answer based on the observation.
+        
+        Args:
+            observation: The observation containing the result
+            
+        Returns:
+            str: The formatted final answer
+        """
+        # If it's a tool result, format it nicely
+        if observation.metadata and "tool" in observation.metadata:
+            tool_name = observation.metadata["tool"]
+            
+            if tool_name == "calculator":
+                if "Result:" in observation.content:
+                    result = observation.content.split("Result:")[-1].strip()
+                    return f"The answer is: {result}"
+                else:
+                    return observation.content
+            
+            elif tool_name == "search":
+                if "Search result:" in observation.content:
+                    result = observation.content.replace("Search result:", "").strip()
+                    return f"Here's what I found: {result}"
+                else:
+                    return observation.content
+            
+            elif tool_name == "memory":
+                return f"Memory operation completed: {observation.content}"
+        
+        # Default formatting
+        return observation.content
 
 
 class MultiAgentSystem:
