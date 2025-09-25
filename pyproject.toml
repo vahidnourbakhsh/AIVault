@@ -78,10 +78,10 @@ deployment = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/username/AIVault"
-Repository = "https://github.com/username/AIVault.git"
-Documentation = "https://github.com/username/AIVault/tree/main/docs"
-"Bug Tracker" = "https://github.com/username/AIVault/issues"
+Homepage = "https://github.com/vahidnourbakhsh/AIVault"
+Repository = "https://github.com/vahidnourbakhsh/AIVault.git"
+Documentation = "https://github.com/vahidnourbakhsh/AIVault/tree/main/docs"
+"Bug Tracker" = "https://github.com/vahidnourbakhsh/AIVault/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]

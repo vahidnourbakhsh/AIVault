@@ -15,7 +15,7 @@ We welcome contributions to AIVault! This document provides guidelines for contr
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/AIVault.git
+git clone https://github.com/vahidnourbakhsh/AIVault.git
 cd AIVault
 ```
 

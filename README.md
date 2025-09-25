@@ -1,7 +1,7 @@
 # AIVault
 ![AIVault Logo](./docs/logo/aivault-logo.png)
 
-[![Python Package using Conda](https://github.com/username/AIVault/actions/workflows/python-app.yml/badge.svg)](https://github.com/username/AIVault/actions/workflows/python-app.yml)
+[![Python Package using Conda](https://github.com/vahidnourbakhsh/AIVault/actions/workflows/python-app.yml/badge.svg)](https://github.com/vahidnourbakhsh/AIVault/actions/workflows/python-app.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
@@ -13,7 +13,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/AIVault.git
+git clone https://github.com/vahidnourbakhsh/AIVault.git
 cd AIVault
 
 # Create conda environment (choose based on your system)
@@ -135,7 +135,7 @@ Each module includes:
 
 **For macOS (including Apple Silicon M1/M2/M3):**
 ```bash
-git clone https://github.com/username/AIVault.git
+git clone https://github.com/vahidnourbakhsh/AIVault.git
 cd AIVault
 conda env create -f environment-macos.yml
 conda activate aivault
@@ -143,7 +143,7 @@ conda activate aivault
 
 **For Linux with NVIDIA GPU:**
 ```bash
-git clone https://github.com/username/AIVault.git
+git clone https://github.com/vahidnourbakhsh/AIVault.git
 cd AIVault
 conda env create -f environment-gpu.yml
 conda activate aivault
@@ -151,7 +151,7 @@ conda activate aivault
 
 **For any platform (basic setup):**
 ```bash
-git clone https://github.com/username/AIVault.git
+git clone https://github.com/vahidnourbakhsh/AIVault.git
 cd AIVault
 conda env create -f environment.yml
 conda activate aivault
@@ -211,10 +211,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Author**: [Your Name]
-- **Email**: your.email@example.com
+- **Author**: Vahid Nourbakhsh
 - **LinkedIn**: [Your LinkedIn Profile]
-- **Twitter**: [@YourTwitter]
 
 ---
 
