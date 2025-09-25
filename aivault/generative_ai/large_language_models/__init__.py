@@ -2,4 +2,8 @@
 Large Language Models module containing LLM implementations and utilities.
 """
 
-__all__ = []
+from . import ai_agents
+
+__all__ = [
+    "ai_agents"
+]

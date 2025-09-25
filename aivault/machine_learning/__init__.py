@@ -7,13 +7,12 @@ This module includes:
 - Reinforcement learning implementations
 """
 
-# Import statements will be added as modules are implemented
-# from . import supervised_learning
-# from . import unsupervised_learning  
-# from . import reinforcement_learning
+from . import supervised_learning
+from . import unsupervised_learning  
+from . import reinforcement_learning
 
 __all__ = [
-    # "supervised_learning",
-    # "unsupervised_learning",
-    # "reinforcement_learning"
+    "supervised_learning",
+    "unsupervised_learning",
+    "reinforcement_learning"
 ]
